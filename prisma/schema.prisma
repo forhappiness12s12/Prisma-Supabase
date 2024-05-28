@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Rune {
+  id             Int     @id @default(autoincrement())
+  wallet_address String  @unique
+  overview       String?
+  urls           Json
+}
+
+model runeRequest {
+  id             Int      @id @default(autoincrement())
+  wallet_address String   @unique
+  overview       String?
+  urls           Json
+  create_at      DateTime
+  approved_at    DateTime
+  status         String
+}
